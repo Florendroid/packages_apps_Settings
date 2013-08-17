@@ -4805,11 +4805,17 @@
     <string name="listview_anticipate_overshoot_interpolator">anticipate_overshoot_interpolator</string>
     <string name="listview_bounce_interpolator">bounce_interpolator</string>
 
- <!-- Network speed -->
+    <!-- Network speed -->
     <string name="show_network_speed">Network speed indicator</string>
     <string name="show_network_speed_summary">Show network speed in statsbar</string> 
     <string name="status_bar_traffic_color_title">Network speed Color</string>
-
+    
+    <string name="status_bar_show_network_stats_title">Show network speeds</string>
+    <string name="status_bar_network_stats_update_title">Update frequency</string>
+    <string name="status_bar_network_title">Network traffic</string>
+    <string name="status_bar_network_thinkingbridge">Thinking Bridge Style</string>
+    <string name="status_bar_network_chameleon">Chameleon OS Style</string>
+    
     <string name="title_tile_camera">Camera</string> 
 
      <!-- Tile background style and text color -->
@@ -4934,7 +4940,6 @@
     <string name="trigger_top_summary">Adjust the vertical postion of the trigger area</string>
     <string name="trigger_bottom_title">Trigger height</string>
     <string name="trigger_bottom_summary">Adjust the height of the trigger area</string>  
-
 
     <!-- MIUI-like carrier label -->
     <string name="show_carrier_label_title">MIUI-like Carrier Label</string>
