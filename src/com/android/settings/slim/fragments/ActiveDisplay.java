@@ -26,11 +26,17 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
+import android.text.TextUtils;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.widgets.ActiveSeekPreference;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import static android.hardware.Sensor.TYPE_LIGHT;
 import static android.hardware.Sensor.TYPE_PROXIMITY;
 import static android.hardware.Sensor.TYPE_LIGHT; 
 
@@ -43,6 +49,7 @@ public class ActiveDisplay extends SettingsPreferenceFragment implements
     private static final String KEY_ALL_NOTIFICATIONS = "ad_all_notifications";
     private static final String KEY_POCKET_MODE = "ad_pocket_mode";
     private static final String KEY_REDISPLAY = "ad_redisplay";
+    private static final String KEY_EXCLUDED_APPS = "ad_excluded_apps";
     private static final String KEY_SHOW_DATE = "ad_show_date";
     private static final String KEY_SHOW_AMPM = "ad_show_ampm";
     private static final String KEY_BRIGHTNESS = "ad_brightness";
@@ -63,6 +70,7 @@ public class ActiveDisplay extends SettingsPreferenceFragment implements
     private ListPreference mRedisplayPref;
     private CheckBoxPreference mSunlightModePref;
     private ListPreference mDisplayTimeout; 
+    private AppMultiSelectListPreference mExcludedAppsPref;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -130,6 +138,10 @@ public class ActiveDisplay extends SettingsPreferenceFragment implements
         mDisplayTimeout.setValue(String.valueOf(timeout));
         updateTimeoutSummary(timeout);
  
+        mExcludedAppsPref = (AppMultiSelectListPreference) findPreference(KEY_EXCLUDED_APPS);
+        Set<String> excludedApps = getExcludedApps();
+        if (excludedApps != null) mExcludedAppsPref.setValues(excludedApps);
+        mExcludedAppsPref.setOnPreferenceChangeListener(this);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -151,7 +163,10 @@ public class ActiveDisplay extends SettingsPreferenceFragment implements
             long timeout = Integer.valueOf((String) newValue);
             updateTimeoutSummary(timeout);
             return true;
-        } 
+        } else if (preference == mExcludedAppsPref) {
+            storeExcludedApps((Set<String>) newValue);
+            return true;
+        }
         return false;
     }
 
@@ -225,4 +240,25 @@ public class ActiveDisplay extends SettingsPreferenceFragment implements
         } catch (ArrayIndexOutOfBoundsException e) {
         }
     } 
+
+   private Set<String> getExcludedApps() {
+        String excluded = Settings.System.getString(getContentResolver(),
+                Settings.System.ACTIVE_DISPLAY_EXCLUDED_APPS);
+        if (TextUtils.isEmpty(excluded))
+            return null;
+
+        return new HashSet<String>(Arrays.asList(excluded.split("\\|")));
+    }
+
+    private void storeExcludedApps(Set<String> values) {
+        StringBuilder builder = new StringBuilder();
+        String delimiter = "";
+        for (String value : values) {
+            builder.append(delimiter);
+            builder.append(value);
+            delimiter = "|";
+        }
+        Settings.System.putString(getContentResolver(),
+                Settings.System.ACTIVE_DISPLAY_EXCLUDED_APPS, builder.toString());
+    }
 }
