@@ -51,7 +51,7 @@ public class BootService extends Service {
         protected Void doInBackground(Void... args) {
 
             if ((Settings.System.getInt(getContentResolver(), Settings.System.USE_WEATHER, 0) == 1) && 
-	         (Settings.System.getInt(getContentResolver(), Settings.System.STATUSBAR_WEATHER_STYLE, 3) != 3)) {
+	         (Settings.System.getInt(getContentResolver(), Settings.System.STATUSBAR_WEATHER_STYLE, 2) != 2)) {
                 sendLastWeatherBroadcast();
                 getApplicationContext().startService(new Intent(c, WeatherRefreshService.class));
             }
