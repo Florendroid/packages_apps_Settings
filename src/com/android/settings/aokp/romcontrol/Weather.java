@@ -59,43 +59,43 @@ public class Weather extends SettingsPreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.prefs_weather);
-
+	PreferenceScreen prefSet = getPreferenceScreen();
         prefs = getActivity().getSharedPreferences("weather", Context.MODE_WORLD_WRITEABLE);
 
         mPicker = new ShortcutPickerHelper(this, this);
 
-        mWeatherSyncInterval = (ListPreference) findPreference("refresh_interval");
+        mWeatherSyncInterval = (ListPreference) prefSet.findPreference("refresh_interval");
         mWeatherSyncInterval.setOnPreferenceChangeListener(this);
         mWeatherSyncInterval.setSummary(Integer.toString(WeatherPrefs.getRefreshInterval(mContext))
                 + getResources().getString(R.string.weather_refresh_interval_minutes));
 
-        mStatusBarLocation = (ListPreference) findPreference("statusbar_location");
+        mStatusBarLocation = (ListPreference) prefSet.findPreference("statusbar_location");
         mStatusBarLocation.setOnPreferenceChangeListener(this);
         mStatusBarLocation.setValue(Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUSBAR_WEATHER_STYLE, 2) + "");
 
-        mCustomWeatherLoc = (EditTextPreference) findPreference("custom_location");
+        mCustomWeatherLoc = (EditTextPreference) prefs.findPreference("custom_location");
         mCustomWeatherLoc.setOnPreferenceChangeListener(this);
         mCustomWeatherLoc
                 .setSummary(WeatherPrefs.getCustomLocation(mContext));
 
-        mEnableWeather = (CheckBoxPreference) findPreference("enable_weather");
+        mEnableWeather = (CheckBoxPreference) prefSet.findPreference("enable_weather");
         mEnableWeather.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.USE_WEATHER, 0) == 1);
 
-        mUseCustomLoc = (CheckBoxPreference) findPreference(WeatherPrefs.KEY_USE_CUSTOM_LOCATION);
+        mUseCustomLoc = (CheckBoxPreference) prefSet.findPreference(WeatherPrefs.KEY_USE_CUSTOM_LOCATION);
         mUseCustomLoc.setChecked(WeatherPrefs.getUseCustomLocation(mContext));
 
-        mUseCelcius = (CheckBoxPreference) findPreference(WeatherPrefs.KEY_USE_CELCIUS);
+        mUseCelcius = (CheckBoxPreference) prefSet.findPreference(WeatherPrefs.KEY_USE_CELCIUS);
         mUseCelcius.setChecked(WeatherPrefs.getUseCelcius(mContext));
 
-	mWeatherShortClick = (ListPreference) findPreference("weather_shortclick");
+	mWeatherShortClick = (ListPreference) prefSet.findPreference("weather_shortclick");
         mWeatherShortClick.setOnPreferenceChangeListener(this);
         mWeatherShortClick.setSummary(getProperSummary(mWeatherShortClick));
 	mWeatherShortClick.setValue(Settings.System.getString(getContentResolver(),
                 Settings.System.WEATHER_PANEL_SHORTCLICK));
 	
-        mWeatherLongClick = (ListPreference) findPreference("weather_longclick");
+        mWeatherLongClick = (ListPreference) prefSet.findPreference("weather_longclick");
         mWeatherLongClick.setOnPreferenceChangeListener(this);
         mWeatherLongClick.setSummary(getProperSummary(mWeatherLongClick));
 	mWeatherLongClick.setValue(Settings.System.getString(getContentResolver(),

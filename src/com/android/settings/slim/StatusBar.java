@@ -121,7 +121,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
 	mWeather = findPreference(STATUS_WEATHER);
  	
-	mStatusBarCarrierLabel = (CheckBoxPreference) findPreference(STATUS_BAR_CARRIER_LABEL);
+	mStatusBarCarrierLabel = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_CARRIER_LABEL);
         mStatusBarCarrierLabel.setChecked(Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.STATUS_BAR_CARRIER, 0) == 1); 
 
@@ -181,6 +181,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
 
         boolean value;
+	boolean value1;
 
 	if (preference == mStatusBarTraffic) {
             value = mStatusBarTraffic.isChecked();
@@ -188,10 +189,10 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                     Settings.System.STATUS_BAR_TRAFFIC, value ? 1 : 0);
             return true;
          } else if (preference == mStatusBarCarrierLabel) {
+	    value1 = mStatusBarCarrierLabel.isChecked();
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.STATUS_BAR_CARRIER,
-                    ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
-           // Helpers.restartSystemUI();
+                    Settings.System.STATUS_BAR_CARRIER, value1 ? 1 : 0);
+            Helpers.restartSystemUI();
             return true; 
 	 }
         	return super.onPreferenceTreeClick(preferenceScreen, preference);
