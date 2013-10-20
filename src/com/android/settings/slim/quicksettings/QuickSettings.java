@@ -67,12 +67,10 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     private static final String DYNAMIC_TILES = "pref_dynamic_tiles";
     private static final String QS_TILES_STYLE = "quicksettings_tiles_style";
     private static final String TILE_PICKER = "tile_picker";
-    private static final String SCREENSHOT_DELAY = "screenshot_delay";
 
     MultiSelectListPreference mRingMode;
     ListPreference mNetworkMode;
     ListPreference mScreenTimeoutMode;
-    ListPreference mScreenshotDelay;
     CheckBoxPreference mDynamicAlarm;
     CheckBoxPreference mDynamicBugReport;
     CheckBoxPreference mDynamicWifi;
@@ -88,9 +86,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     PreferenceScreen mQsTilesStyle;
     PreferenceScreen mTilePicker;
 
-    private ContentResolver resolver;
-
-   @Override
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.quick_settings_panel_settings);
@@ -153,13 +149,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
                 mDynamicTiles.removePreference(mDynamicUsbTether);
             }
         }
-
-	 // Screenshot Delay
-        mScreenshotDelay = (ListPreference) prefSet.findPreference(SCREENSHOT_DELAY);
-        mScreenshotDelay.setOnPreferenceChangeListener(this);
-        mScreenshotDelay.setValue(String.valueOf(Settings.System.getInt(mContentRes,
-                Settings.System.SCREENSHOT_TOGGLE_DELAY, 5000)));
-
 
         mDynamicWifi = (CheckBoxPreference) prefSet.findPreference(DYNAMIC_WIFI);
         if (mDynamicWifi != null) {
@@ -260,11 +249,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
                     Settings.System.EXPANDED_NETWORK_MODE, value);
             mNetworkMode.setSummary(mNetworkMode.getEntries()[index]);
             return true;
-        } else if (preference == mScreenshotDelay) {
-            int val = Integer.parseInt((String) newValue);
-            Settings.System.putInt(mContentRes,
-                    Settings.System.SCREENSHOT_TOGGLE_DELAY, val);
-            mScreenshotDelay.setValue((String) newValue);
         } else if (preference == mQuickPulldown) {
             int quickPulldownValue = Integer.valueOf((String) newValue);
             Settings.System.putInt(resolver, Settings.System.QS_QUICK_PULLDOWN,
@@ -371,8 +355,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             mDynamicUsbTether.setEnabled(status);
         if (mNoNotificationsPulldown != null)
             mNoNotificationsPulldown.setEnabled(status);
-	if (mScreenshotDelay != null)
-            mScreenshotDelay.setEnabled(status);
         if (mCollapsePanel != null)
             mCollapsePanel.setEnabled(status);
         if (mQuickPulldown != null)

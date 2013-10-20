@@ -4805,8 +4805,7 @@
     <string name="listview_anticipate_overshoot_interpolator">anticipate_overshoot_interpolator</string>
     <string name="listview_bounce_interpolator">bounce_interpolator</string>
 
-
-    <!-- Network speed -->
+ <!-- Network speed -->
     <string name="show_network_speed">Network speed indicator</string>
     <string name="show_network_speed_summary">Show network speed in statsbar</string> 
     <string name="status_bar_traffic_color_title">Network speed Color</string>
@@ -4940,33 +4939,5 @@
     <!-- MIUI-like carrier label -->
     <string name="show_carrier_label_title">MIUI-like Carrier Label</string>
     <string name="show_carrier_label_summary">Show MIUI-like carrier label in statusbar</string>
-    
-    <!-- Halo & Screenshot tiles -->
-    <string name="title_tile_screenshot">Screenshot</string>
-    <string name="title_tile_halo">Halo</string>
-
-    <string name="screenshot_delay_title">Screenshot delay</string>
-    <string name="screenshot_delay_summary">Delay to use after longpressing the screenshot tile</string>
-
-    
-    <!-- LED Values -->
-    <string name="time_0_seconds_off">Off</string>
-    <string name="time_0_2_seconds">.2 seconds</string>
-    <string name="time_0_5_seconds">.5 seconds</string>
-    <string name="time_1_second">1 second</string>
-    <string name="time_1_5_seconds">1.5 seconds</string>
-    <string name="time_2_seconds">2 seconds</string>
-    <string name="time_2_5_seconds">2.5 seconds</string>
-    <string name="time_3_seconds">3 seconds</string>
-    <string name="time_3_5_seconds">3.5 seconds</string>
-    <string name="time_4_seconds">4 seconds</string>
-    <string name="time_4_5_seconds">4.5 seconds</string>
-    <string name="time_5_seconds">5 seconds</string>
-    <string name="time_5_5_seconds">5.5 seconds</string>
-    <string name="time_6_seconds">6 seconds</string>
-    <string name="time_7_seconds">7 seconds</string>
-    <string name="time_8_seconds">8 seconds</string>
-    <string name="time_9_seconds">9 seconds</string>
-    <string name="time_10_seconds">10 seconds</string>
 
 </resources>
