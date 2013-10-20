@@ -42,6 +42,7 @@ public class Weather extends SettingsPreferenceFragment implements
     CheckBoxPreference mEnableWeather;
     CheckBoxPreference mUseCustomLoc;
     CheckBoxPreference mUseCelcius;
+    CheckBoxPreference mTimeStamp;
     ListPreference mStatusBarLocation;
     ListPreference mWeatherSyncInterval;
     EditTextPreference mCustomWeatherLoc;
@@ -74,7 +75,7 @@ public class Weather extends SettingsPreferenceFragment implements
         mStatusBarLocation.setValue(Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUSBAR_WEATHER_STYLE, 2) + "");
 
-        mCustomWeatherLoc = (EditTextPreference) prefs.findPreference("custom_location");
+        mCustomWeatherLoc = (EditTextPreference) prefSet.findPreference("custom_location");
         mCustomWeatherLoc.setOnPreferenceChangeListener(this);
         mCustomWeatherLoc
                 .setSummary(WeatherPrefs.getCustomLocation(mContext));
@@ -88,6 +89,10 @@ public class Weather extends SettingsPreferenceFragment implements
 
         mUseCelcius = (CheckBoxPreference) prefSet.findPreference(WeatherPrefs.KEY_USE_CELCIUS);
         mUseCelcius.setChecked(WeatherPrefs.getUseCelcius(mContext));
+
+	mTimeStamp = (CheckBoxPreference) prefSet.findPreference("show_time");
+        mTimeStamp.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.SHOW_TIME, 1) == 1);
 
 	mWeatherShortClick = (ListPreference) prefSet.findPreference("weather_shortclick");
         mWeatherShortClick.setOnPreferenceChangeListener(this);
@@ -194,6 +199,13 @@ public class Weather extends SettingsPreferenceFragment implements
         } else if (preference == mUseCelcius) {
             return WeatherPrefs.setUseCelcius(mContext,
                     ((CheckBoxPreference) preference).isChecked());
+        } else if (preference == mTimeStamp) {
+	    boolean check = ((CheckBoxPreference) preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SHOW_TIME,
+                    check ? 1 : 0);
+            Helpers.restartSystemUI();
+            return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }

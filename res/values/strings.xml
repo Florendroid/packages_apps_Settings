@@ -2786,6 +2786,8 @@
         will stop you from getting weather updates and may cause unexpected behavior.\n\nExamples: New York,NY // New
         York, NY // 10033 // London, England
     </string>
+    <string name="weather_show_time_title">Show time</string>
+    <string name="weather_show_time_summary">Whether to show time of update in the weather panel or not</string>
     <string name="weather_custom_location_title">Custom location</string>
     <string name="weather_show_location_title">Show location</string>
     <string name="weather_show_location_summary">Show your location.</string>

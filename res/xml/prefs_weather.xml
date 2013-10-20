@@ -31,6 +31,12 @@
         android:dependency="enable_weather"
         android:title="@string/weather_use_celcius"
         android:summary="@string/weather_use_celcius_summary" />
+    
+    <CheckBoxPreference
+        android:key="show_time"
+        android:dependency="enable_weather"
+        android:title="@string/weather_show_time_title"
+        android:summary="@string/weather_show_time_summary" />
 
     <ListPreference
         android:entries="@array/weather_action_entries"
