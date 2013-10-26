@@ -4940,4 +4940,10 @@
     <string name="show_carrier_label_title">MIUI-like Carrier Label</string>
     <string name="show_carrier_label_summary">Show MIUI-like carrier label in statusbar</string>
 
+    <!-- Flip tile animation -->
+    <string name="enable_flip_animation">Enable tile flip animation</string>
+    <string name="enable_flip_animation_summary">Whether to show a flip animation when a tile is pressed</string>
+    
+    
+
 </resources>

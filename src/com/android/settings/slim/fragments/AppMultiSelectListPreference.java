@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.carbon.settings.fragments.lockscreen;
+package com.android.settings.slim.fragments;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,7 +32,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.carbon.settings.R;
+import com.android.settings.R;
 
 import java.text.Collator;
 import java.util.ArrayList;

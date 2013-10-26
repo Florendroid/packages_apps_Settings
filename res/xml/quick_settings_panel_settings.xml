@@ -47,6 +47,12 @@
             android:entryValues="@array/no_notifications_pulldown_values"
             android:persistent="false" />
 
+	<CheckBoxPreference
+            android:key="enable_flip_animation"
+            android:title="@string/enable_flip_animation"
+            android:defaultValue="true"
+            android:summary="@string/enable_flip_animation_summary" />
+
         <PreferenceScreen
             android:key="quicksettings_tiles_style"
             android:fragment="com.android.settings.slim.quicksettings.QuickSettingsTilesStyle"
