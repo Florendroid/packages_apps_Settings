@@ -67,7 +67,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     private static final String DYNAMIC_TILES = "pref_dynamic_tiles";
     private static final String QS_TILES_STYLE = "quicksettings_tiles_style";
     private static final String TILE_PICKER = "tile_picker";
-    private static final String TILE_PICKER = "tile_picker";
     private static final String FLIP_ANIMATION = "enable_flip_animation";
 
 
@@ -228,6 +227,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             Settings.System.putInt(resolver, Settings.System.QUICK_SETTINGS_TILES_FLIP,
                     mFlipAnimation.isChecked() ? 1 : 0);
             return true;
+	}
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 

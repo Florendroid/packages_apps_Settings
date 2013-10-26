@@ -221,10 +221,11 @@ public class Helpers {
         String timestamp;
         timestamp = "unknown";
         Date now = new Date();
-        java.text.DateFormat dateFormat = android.text.format.DateFormat.getMediumDateFormat(context);
+        //java.text.DateFormat dateFormat = android.text.format.DateFormat.getMediumDateFormat(context);
         java.text.DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(context);
-        if(dateFormat != null && timeFormat != null) {
-            timestamp = timeFormat.format(now) + " | " + dateFormat.format(now);
+        if(timeFormat != null) {
+            timestamp = timeFormat.format(now); 
+	// + " | " + dateFormat.format(now);
         }
         return timestamp;
     }
