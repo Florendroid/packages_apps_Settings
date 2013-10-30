@@ -62,9 +62,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private Preference mWeather;
     private Preference mNetworkSpeed;
     private CheckBoxPreference mStatusBarCarrierLabel; 
-    int defaultColor;
-    int intColor;
-    String hexColor;
+   
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
