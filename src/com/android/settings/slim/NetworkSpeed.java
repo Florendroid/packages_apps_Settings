@@ -126,16 +126,18 @@ public class NetworkSpeed extends SettingsPreferenceFragment implements OnPrefer
             value = mStatusBarTraffic.isChecked();
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_TRAFFIC, value ? 1 : 0);
-	    if (value) {
+	    if (value == true) {
 		Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_NETWORK_STATS, 0);
+		mStatusBarNetworkStats.setChecked(false);
 		}
             return true;
          } else if (preference == mStatusBarNetworkStats) {
             value1 = mStatusBarNetworkStats.isChecked();
-	    if (value1) {
+	    if (value1 == true) {
 		Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_TRAFFIC, 0);
+		mStatusBarTraffic.setChecked(false);
 		}
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_NETWORK_STATS, value1 ? 1 : 0);
